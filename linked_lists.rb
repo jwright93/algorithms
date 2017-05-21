@@ -30,3 +30,18 @@ def cyclic(first_link)
 
   nil
 end
+
+def cyclic2(first_link)
+
+  slower_runner = first_link
+  faster_runner = first_link
+
+  while true
+    2.times do
+      faster_runner = faster_runner.next
+      return nil if faster_runner.nil?
+      return faster_runner if faster_runner == slower_runner
+    end
+
+    slower_runner = slower_runner.next
+end
