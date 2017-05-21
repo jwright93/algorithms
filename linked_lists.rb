@@ -16,3 +16,17 @@ def merge(l, f)
   l.nil? ? tail.next = r : tail.next = l
   m.next
 end
+
+def cyclic(first_link)
+  # naive solution O(n) space complexity
+  visited = Set.new
+  current = first_link
+
+  until current.nil?
+    return current if visited.include?(current)
+    visited << current
+    current = current.next
+  end
+
+  nil
+end
