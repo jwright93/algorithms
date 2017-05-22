@@ -45,3 +45,33 @@ def cyclic2(first_link)
 
     slower_runner = slower_runner.next
 end
+
+def median(node)
+  current_node = node
+  greatest_node = node
+  count = 0
+  same = true
+
+  until count != 0 && curent_node == node
+    same = false if current_node.val !=current_node.next.val
+    greatest_node = current_node if current_node.value >= greatest_node.value
+
+    count += 1
+    current_node = current_node.next
+  end
+
+  current_node = greatest_node.next
+
+  return node.value if same
+
+  count.times do
+    current_node  = current_node
+  end
+
+  if count.odd?
+    current_node.value
+  else
+    (current_node.value + current_node.next.value) / 2
+  end
+
+end
