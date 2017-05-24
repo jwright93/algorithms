@@ -1,3 +1,4 @@
+require 'set'
 # 8.1
 
 class MaxStack
@@ -27,3 +28,27 @@ class MaxStack
     @max_value.last
   end
 end
+
+
+def rpn_calc(expression)
+  stack = expression.split(',')
+  result = []
+
+  stack.each do |x|
+    if is_integer?(x)
+      result << x.to_f
+    else
+
+      raise 'incorrect expression form' if result.length != 2
+      result = [result[0].send(x, result[1])]
+    end
+  end
+
+  result.first
+end
+
+def is_integer?(num)
+  num.to_i.to_s == num
+end
+
+p rpn_calc('1,2,+,5,/,19,+')
