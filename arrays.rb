@@ -92,3 +92,20 @@ end
       result
 
   end
+
+
+  def find_the_difference(s, t)
+    count_s = 0
+    count_t = 0
+    s.chars.each do |letter|
+        count_s += letter.ord
+    end
+
+    t.chars.each do |letter|
+        count_t += letter.ord
+    end
+
+    (count_t - count_s).chr
+
+
+end
