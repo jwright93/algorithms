@@ -64,3 +64,19 @@ end
   arr3 = [3, 4, 15, 20, 30, 70, 80, 120]
 
   p smallest(arr1, arr2, arr3)
+
+
+  def find_max_consecutive_ones(nums)
+      current = 0
+      max = 0
+      nums.each do |num|
+          if num == 1
+              current += 1
+              max = current if current >= max
+          else
+              current = 0
+          end
+      end
+
+      max
+  end
