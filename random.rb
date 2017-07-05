@@ -59,7 +59,7 @@ end
 def number_compliment(num)
   answer = ''
   until num == 0
-    num % 2 == 0 ? answer += '1' : answer += '0'
+    num % 2 == 0 ? answer =  '1' + answer : answer =  '0' + answer
     num /=2
   end
 
