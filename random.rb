@@ -43,3 +43,14 @@ def balanced_braces(str)
   end
   stack.empty?
 end
+
+
+def hamming_distance(x, y)
+  answer = 0
+  until x == 0 || y == 0
+    answer += 1 if (x % 2) & (y % 2)
+    x /= 2
+    y /= 2
+  end
+  answer
+end

@@ -2,6 +2,7 @@
 
 
 class WordBank
+  attr_reader :root
   def initialize
     @root = {}
   end
