@@ -24,12 +24,12 @@ end
 #
 # end
 #
-# def post_order(root)
-#   return nil unless root
-#   post_order(root.left)
-#   post_order(root.right)
-#   p root
-# end
+def post_order(root)
+  return nil unless root
+  post_order(root.left)
+  post_order(root.right)
+  p root.data
+end
 
 
 def in_order_iterative(root)
@@ -55,10 +55,29 @@ def in_order_iterative(root)
   result
 end
 
+
+def pre_order_iterative(root)
+  stack = []
+  result = []
+  stack << root
+
+  until stack.empty?
+    current = stack.pop
+    result << current.data
+
+    stack << current.left if current.left
+    stack << current.right if current.right
+  end
+
+  result
+
+end
+
+
 root = TreeNode.new(1)
 left = root.left = TreeNode.new(2)
 right = root.right = TreeNode.new(3)
 left.left = TreeNode.new(4)
 left.right = TreeNode.new(5)
 
-puts in_order_iterative(root)
+post_order(root)
