@@ -109,6 +109,3 @@ def subsets(array)
 
 
 end
-
-
-puts subsets([1,2,3])

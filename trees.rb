@@ -20,3 +20,15 @@ def merge_tree(t1, t2)
 
 
 end
+
+
+def same_tree?(t1, t2)
+  return true if t1 == nil && t2 == nil
+
+  if t1 && t2
+    return (t1.val == t2.val &&
+            same_tree?(t1.right, t2.right) &&
+            same_tree?(t1.left, t2.left))
+  end
+    false
+end
