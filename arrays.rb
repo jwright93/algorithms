@@ -19,9 +19,6 @@ def dutch_flag_partition(arr, idx)
   arr
 end
 
- a = [1,2,6,3,1]
-
-  p dutch_flag_partition(a, 4)
 
 def fizzbuzz(n)
   result = ''
@@ -38,74 +35,80 @@ def fizzbuzz(n)
   result
 end
 
-  def smallest(arr1, arr2, arr3)
-    i = 0
-    j = 0
-    k = 0
+def smallest(arr1, arr2, arr3)
+  i = 0
+  j = 0
+  k = 0
 
 
-    while i < arr1.length && j < arr2.length && k < arr3.length
-      return  arr1[i] if arr1[i] == arr2[j] && arr2[j] == arr3[k]
+  while i < arr1.length && j < arr2.length && k < arr3.length
+    return  arr1[i] if arr1[i] == arr2[j] && arr2[j] == arr3[k]
 
-      case [arr1[i], arr2[j], arr3[k]].min
-      when arr1[i]
-        i += 1
-      when  arr2[j]
-        j += 1
-      when arr3[k]
-        k += 1
-      end
+    case [arr1[i], arr2[j], arr3[k]].min
+    when arr1[i]
+      i += 1
+    when  arr2[j]
+      j += 1
+    when arr3[k]
+      k += 1
     end
-    return nil
   end
-
-  arr1 = [1, 5, 10, 20, 40, 80]
-  arr2 = [6, 7, 20, 80, 100]
-  arr3 = [3, 4, 15, 20, 30, 70, 80, 120]
-
-  p smallest(arr1, arr2, arr3)
+  return nil
+end
 
 
-  def find_max_consecutive_ones(nums)
-      current = 0
-      max = 0
-      nums.each do |num|
-          if num == 1
-              current += 1
-              max = current if current >= max
-          else
-              current = 0
-          end
-      end
-
-      max
-  end
-
-
-
-  def single_number(nums)
-      result  = 0
-      nums.each do |num|
-          result ^= num
-      end
-
-      result
-
-  end
-
-
-  def find_the_difference(s, t)
-    count_s = 0
-    count_t = 0
-    s.chars.each do |letter|
-        count_s += letter.ord
+def find_max_consecutive_ones(nums)
+    current = 0
+    max = 0
+    nums.each do |num|
+        if num == 1
+            current += 1
+            max = current if current >= max
+        else
+            current = 0
+        end
     end
 
-    t.chars.each do |letter|
-        count_t += letter.ord
+    max
+end
+
+
+
+def single_number(nums)
+    result  = 0
+    nums.each do |num|
+        result ^= num
     end
 
-    (count_t - count_s).chr
+    result
+
+end
+
+
+def find_the_difference(s, t)
+  count_s = 0
+  count_t = 0
+  s.chars.each do |letter|
+      count_s += letter.ord
+  end
+
+  t.chars.each do |letter|
+      count_t += letter.ord
+  end
+
+  (count_t - count_s).chr
+end
+
+
+def subsets(array)
+  return [[]] if array.empty?
+
+  previous = subsets(array[1..-1])
+  first = array.first
+  previous.concat(previous.map {|set| [first] + set})
 
 
 end
+
+
+puts subsets([1,2,3])
