@@ -73,4 +73,30 @@ def string_compression(string)
 end
 
 
+class LinkNode
+  attr_accesor :data, :prev, :next
+  def initialize(data)
+    @data = data
+    @prev = nil
+    @next = nil
+  end
+end
+
 ## 2.2
+
+def kth_last_element(head, k)
+
+  point1 = head
+  point2 = head
+
+  k.times do |i|
+    point1 = point1.next
+  end
+
+  until point1.next == nil
+    point1 = point1.next
+    point2 = point2.next
+  end
+
+  point2
+end
