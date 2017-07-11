@@ -59,3 +59,23 @@ end
 # puts one_away('bale', 'kale')
 # puts one_away('ale', 'kale')
 # puts one_away('ale', 'kald')
+
+# 1.6
+
+def string_compression(string)
+  result = ''
+  count = 1
+  i = 1
+
+  until i == string.length
+    if string[i] == string[i - 1]
+      count+= 1
+    else
+      result += "#{string[i-1]}#{count}"
+      count = 1
+    end
+    i += 1
+  end
+  result += "#{string[string.length - 1]}#{count}"
+  result.length <= string.length ? result : string
+end
