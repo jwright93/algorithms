@@ -80,4 +80,21 @@ right = root.right = TreeNode.new(3)
 left.left = TreeNode.new(4)
 left.right = TreeNode.new(5)
 
-post_order(root)
+
+def iter_post_order(root)
+  stack1 = []
+  stack2 = []
+
+  stack1 << root
+
+  until stack1.empty?
+    current = stack1.pop
+    if current
+      stack2 << current.data
+      stack1 << current.left
+      stack1 << current.right
+    end
+  end
+  stack2
+end
+p iter_post_order(root)
