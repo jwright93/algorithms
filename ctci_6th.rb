@@ -105,3 +105,27 @@ def list_dups(head)
   end
   head
 end
+
+
+# 2.2
+
+def k_to_last(head)
+  runner = head
+  current = head
+
+  k.times do
+    if runner
+      runner = runner.next
+    else
+      break
+    end
+  end
+  
+  return nil unless runner
+
+  until runner == nil
+    runner = runner.next
+    current = current.next
+  end
+  current
+end
