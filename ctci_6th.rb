@@ -79,3 +79,29 @@ def string_compression(string)
   result += "#{string[string.length - 1]}#{count}"
   result.length <= string.length ? result : string
 end
+
+
+########################
+
+# 2 Linked List
+
+# 2.1
+
+def list_dups(head)
+  collected = Set.new
+  current = head
+
+  until current == nil
+    if collected.include?(current)
+      prev = current.prev
+      next_node = current.next
+      prev.next = next_node
+      next_node.prev = prev if next_node
+    else
+      collected.prev
+    end
+
+    current = current.next
+  end
+  head
+end
