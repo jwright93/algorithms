@@ -1,3 +1,5 @@
+require 'set'
+
 def fibonacci(n)
 
 
@@ -64,4 +66,24 @@ def number_compliment(num)
   end
 
   answer.to_i(2)
+end
+
+
+def reverse_vowels(string)
+  vowels = Set.new(['a', 'e', 'i', 'o','u'])
+
+  i = 0
+  j = string.length
+
+  until i >= j
+    if vowels.include?(string[i]) && vowels.include?(string[j])
+      string[i], string[j] = string[j], string[i]
+      i += 1
+      j -= 1
+    else
+      i += 1 if !vowels.include?(string[i])
+      j -= 1 if !vowels.include?(string[j])
+    end
+  end
+  string
 end
