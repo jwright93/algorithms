@@ -87,3 +87,18 @@ def reverse_vowels(string)
   end
   string
 end
+
+
+def string_decompression(string)
+  i = 0
+  result = ''
+  until i >= string.length
+    string[i + 1].to_i.times do
+      result += string[i]
+    end
+    i += 2
+  end
+  result
+end
+
+puts string_decompression('a4b2c1')
