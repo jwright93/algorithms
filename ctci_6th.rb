@@ -80,6 +80,83 @@ def string_compression(string)
   result.length <= string.length ? result : string
 end
 
+# 1.7 rotate matrix
+
+# O(n^2) time and space
+
+def rotate_matrix(mat)
+  mat.reverse!
+  mat.transpose
+end
+
+def own_transpose(mat)
+  result = Array.new(mat.length) { Array.new(mat.length)}
+
+  col = 0
+
+  until col == mat.length
+    row = 0
+    until row == mat.length
+      result[col][row] = mat[row][col]
+      row += 1
+    end
+    col += 1
+  end
+  result
+end
+
+# 1.8
+def zero_matrix(mat)
+  rows = Set.new
+  cols = Set.new
+
+  row = 0
+
+  until row == mat.length
+    col = 0
+    until col == mat[0].length
+      if mat[row][col] == 0
+        rows << row
+        cols << col
+      end
+      col += 1
+    end
+    row += 1
+  end
+
+  rows.each do |row|
+    zero_row(row,mat)
+  end
+
+  cols.each do |col|
+    zero_col(col, mat)
+  end
+end
+
+def zero_row(row, mat)
+  length = mat[0].length
+  col = 0
+
+  until col == length
+    mat[row][col] = 0
+    col += 1
+  end
+  mat
+end
+
+def zero_col(col, mat)
+  length = mat.length
+  row = 0
+
+  until row == length
+    mat[row][col] = 0
+    row += 1
+  end
+
+  mat
+end
+
+
 
 ########################
 
@@ -120,7 +197,7 @@ def k_to_last(head)
       break
     end
   end
-  
+
   return nil unless runner
 
   until runner == nil
