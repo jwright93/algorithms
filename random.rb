@@ -101,4 +101,86 @@ def string_decompression(string)
   result
 end
 
-puts string_decompression('a4b2c1')
+# puts string_decompression('a4b2c1')
+
+
+def sum_to(nums)
+  collection = Set.new
+  result = []
+
+  nums.each do |num|
+    if collection.include?(num)
+      result << [(100 - num), num]
+    else
+      collection << (100 - num)
+    end
+  end
+
+  result
+end
+
+
+def parens(str)
+  stack = []
+
+  str.chars.each do |char|
+    if char == '('
+      stack << ')'
+    else
+      return false unless stack.pop == char
+    end
+  end
+
+  stack.empty?
+end
+
+
+def braces(str)
+  stack = []
+
+  pairs = {
+    '(' => ')',
+    '{' => '}',
+    '[' => ']'
+  }
+
+  str.chars.each do |char|
+    if pairs[char]
+      stack << pairs[char]
+    else
+      return false unless stack.pop == char
+    end
+  end
+
+  stack.empty?
+end
+
+
+def max_number(arr1, arr2)
+
+  result = []
+
+  until arr1.empty? || arr2.empty?
+    if arr1.first > arr2.first
+      result << arr1.shift
+    elsif arr1.first < arr2.first
+      result << arr2.shift
+    else
+      i = 0
+      until arr1[i] != arr2[i]
+        i +=1
+      end
+
+      if arr1[i].nil?
+        result + arr1.shift(i)
+      elsif  arr2[i].nil?
+        result + arr2.shift(i)
+      else
+
+      end
+    end
+  end
+
+  (result + arr1 + arr2).to_i
+
+end

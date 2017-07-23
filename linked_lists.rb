@@ -75,3 +75,29 @@ def median(node)
   end
 
 end
+
+class Node
+  attr_accessor :data, :next
+
+  def initialize(data = nil)
+    @data = data
+    @next = nil
+  end
+end
+
+def partition(head, part)
+  starting = head
+  ending = part
+
+  until head.next  == nil
+    head = head.next
+    if head.data >= part.data
+      ending.next = head
+    else
+      starting.next = head
+    end
+  end
+
+  starting.next
+
+end
