@@ -212,6 +212,16 @@ end
 
 # Trees and Graphs
 
+class TreeNode
+  attr_accessor :val, :right, :left
+
+  def initialize(val = nil)
+    @val = val
+    @right = right
+    @left = left
+  end
+end
+
 # 4.1
 
 def node_routes(graph, start, ending)
@@ -234,4 +244,17 @@ def node_routes(graph, start, ending)
   end
 
   false
+end
+
+
+# 4.2
+
+def minimal_tree(array, tree = nil)
+  return nil if array.empty?
+  mid = array.length / 2
+
+  node = TreeNode.new(array[mid])
+  node.left = minimal_tree(array[0...mid])
+  node.right = minimal_tree(array[(mid + 1)..-1])
+  node
 end
