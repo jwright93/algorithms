@@ -162,6 +162,14 @@ end
 
 # 2 Linked List
 
+class ListNode
+  attr_accessor :val, :next
+  def initialize(val = nil)
+    @val = val
+    @next = nil
+  end
+end
+
 # 2.1
 
 def list_dups(head)
@@ -257,4 +265,58 @@ def minimal_tree(array, tree = nil)
   node.left = minimal_tree(array[0...mid])
   node.right = minimal_tree(array[(mid + 1)..-1])
   node
+end
+
+
+# 4.3
+
+def list_of_depth(node)
+  result = []
+  queue = [node]
+
+  until queue.empty?
+    head = ListNode.new(0)
+    result << head
+    list_size = queue.length
+    list_size.times do
+        current = queue.shift
+        unless current.left == nil
+          head.next = ListNode.new(current.left)
+          head = head.next
+          queue << current.left
+        end
+
+        unless current.right == nil
+          head.next = ListNode.new(current.right)
+          head = head.next
+          queue << current.right
+        end
+    end
+  end
+
+  result
+end
+
+def level_order(root)
+    return [] unless root
+    queue = [root]
+    result = [[root.val]]
+
+    until queue.empty?
+        level = []
+        size = queue.length
+        size.times do
+            node = queue.shift
+            if node.left
+                level.push(node.left.val)
+                queue.push(node.left)
+            end
+            if node.right
+                level.push(node.right.val)
+                queue.push(node.right)
+            end
+        end
+        result << level unless level.empty?
+    end
+    result
 end
