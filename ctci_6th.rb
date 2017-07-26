@@ -206,3 +206,32 @@ def k_to_last(head)
   end
   current
 end
+
+
+################################################################
+
+# Trees and Graphs
+
+# 4.1
+
+def node_routes(graph, start, ending)
+  visited = Set.new([start])
+  queue = [start]
+
+  until queue.empty?
+    current = queue.shift
+
+    if current == ending
+      return true
+    end
+
+    current.adjacent.each do |node|
+      unless visited.include?(node)
+        visited << node
+        queue << node
+      end
+    end
+  end
+
+  false
+end
