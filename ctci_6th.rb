@@ -320,3 +320,53 @@ def level_order(root)
     end
     result
 end
+
+
+#4.8
+
+#if parent pointer is given
+def LCA(node1, node2)
+  depth_1 = depth(node1)
+  depth_2 = depth(node2)
+
+  first = depth_1 >= depth_2 ? depth_1 : depth_2
+  second = depth_1 < depth_2 ? depth_1 : depth_2
+
+  (depth_2 - depth_1).abs.times do
+    first = first.parent
+  end
+
+  until first == second || first == nil || second == nil
+    first = first.parent
+    second = second.parent
+  end
+
+  first == second ? first : nil
+
+end
+
+# no parent pointer
+
+def lowest_common_ancestor(root, p, q)
+    return root if root == nil || root == q || root == p
+    left = lowest_common_ancestor(root.left, p, q)
+    right = lowest_common_ancestor(root.right, p, q)
+    left && right ? root : left || right
+end
+
+def successor(node)
+  return nil if node == nil
+
+  if node.right
+    q = node.right
+    until q.left == nil
+      q = q.left
+    end
+  else
+    q = node.parent
+    until q.parent == nil
+      q = q.parent
+    end
+  end
+  q
+end
