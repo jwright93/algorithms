@@ -1,3 +1,4 @@
+require 'byebug'
 require 'set'
 
 def fibonacci(n)
@@ -182,5 +183,52 @@ def max_number(arr1, arr2)
   end
 
   (result + arr1 + arr2).to_i
+
+end
+
+
+def num_islands(grid)
+
+    islands = 0
+    rows = grid.length
+    cols = grid[0].length
+    rows.times do |row|
+        cols.times do |col|
+            if grid[row][col] == '1'
+                islands += 1
+                dfs_check(grid, row, col)
+            end
+        end
+    end
+
+    islands
+end
+
+def dfs_check(grid, row, col)
+    return nil if row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] != '1'
+        grid[row][col] = '0'
+        dfs_check(grid, row + 1, col)
+        dfs_check(grid, row - 1, col)
+        dfs_check(grid, row, col + 1)
+        dfs_check(grid, row, col - 1)
+end
+
+# grid = ["11110","11010","11000","00000"]
+# p num_islands(grid)
+
+
+def license_key_formatting(s, k)
+    s = s.upcase.delete('-')
+
+    i = s.length - 1
+
+    until i < 0
+        k.times do
+            i-= 1
+        end
+        s[i] += '-' if i >= 0
+    end
+
+    s
 
 end
