@@ -32,3 +32,39 @@ def same_tree?(t1, t2)
   end
     false
 end
+
+
+
+def deepest_node(root)
+  return [0, nil] if root == nil
+
+  right = deepest_node(root.right)
+  left = deepest_node(root.left)
+
+  case right[0] <=> left[0]
+  when 0,1
+    deepest = right
+  when -1
+    deepest = left
+  end
+
+  deepest[1] = root if deepest[1] == nil
+  deepest[0] += 1
+  deepest
+end
+
+
+root = TreeNode.new(1)
+two = TreeNode.new(2)
+three = TreeNode.new(3)
+four = TreeNode.new(4)
+five = TreeNode.new(5)
+six = TreeNode.new(6)
+
+
+root.right = three
+root.left = two
+two.left = four
+two.right = five
+four.left = six
+puts deepest_node(root)
