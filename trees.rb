@@ -54,17 +54,86 @@ def deepest_node(root)
 end
 
 
-root = TreeNode.new(1)
-two = TreeNode.new(2)
-three = TreeNode.new(3)
-four = TreeNode.new(4)
-five = TreeNode.new(5)
-six = TreeNode.new(6)
+# root = TreeNode.new(1)
+# two = TreeNode.new(2)
+# three = TreeNode.new(3)
+# four = TreeNode.new(4)
+# five = TreeNode.new(5)
+# six = TreeNode.new(6)
+#
+#
+#
+# root.right = three
+# root.left = two
+# two.left = four
+# two.right = five
+# four.left = six
+# puts deepest_node(root)
 
 
-root.right = three
-root.left = two
-two.left = four
-two.right = five
-four.left = six
-puts deepest_node(root)
+def symmetric_tree(root)
+  symmetric_helper(root.left, root.right)
+end
+
+def symmetric_helper(left, right)
+    if left == nil && right == nil
+      true
+    elsif left ^ right
+      false
+    elsif symmetric_helper(left.left, right.right) &&
+          symmetric_helper(left.right, right.left)
+          true
+    else
+      false
+    end
+end
+
+# root = TreeNode.new(1)
+# two = TreeNode.new(2)
+# three = TreeNode.new(3)
+# four = TreeNode.new(4)
+# five = TreeNode.new(5)
+# six = TreeNode.new(6)
+#
+#
+#
+# root.right = three
+# root.left = two
+# two.left = four
+# two.right = five
+# four.left = six
+# puts symmetric_tree(root)
+
+def return_deepest(root)
+  deep = get_deepest(root)
+  deep[0]
+end
+def get_deepest(node, depth = 0)
+	return [nil, depth] if node == nil
+	depth += 1
+	left = get_deepest(node.left, depth)
+	right = get_deepest(node.right, depth)
+
+	if right[1]  >= left[1]
+		deepest = right
+	else
+		deepest = left
+  end
+
+  deepest[0] = node if deepest[0] == nil
+	deepest
+end
+
+
+root = TreeNode.new(1);
+root.left = TreeNode.new(2);
+root.right = TreeNode.new(3);
+root.left.left = TreeNode.new(4);
+root.right.left = TreeNode.new(5);
+root.right.right = TreeNode.new(6);
+root.right.left.right = TreeNode.new(7);
+root.right.right.right = TreeNode.new(8);
+root.right.left.right.left = TreeNode.new(9);
+root.right.right.right.right = TreeNode.new(10);
+
+puts return_deepest(root)

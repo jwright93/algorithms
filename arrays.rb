@@ -109,3 +109,18 @@ def subsets(array)
 
 
 end
+
+
+
+def group_two(arr)
+	collection = Hash.new(Array.new)
+	arr.each do |word|
+		 collection[word[-2..-1]] += [word]
+	end
+
+	collection.values.flatten
+end
+
+arr = ["top", "bat", "hop", "rot", "sat", "food"]
+
+p group_two(arr)
