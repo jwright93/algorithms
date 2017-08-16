@@ -20,3 +20,16 @@ const implementGetElementsByClassname = (className) => {
   traverse(elements);
   return matches;
 };
+
+
+const getElementsByClassName = (className) => {
+  let result = [];
+
+  const traverse = (element) => {
+    for (var i = 0; i < element.childNodes.length; i++) {
+      const classList = element.childNodes[i].classList;
+    }
+  };
+  traverse(document.body);
+  return result;
+};

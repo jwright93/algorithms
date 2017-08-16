@@ -1,0 +1,34 @@
+.main-elements {
+  display: flex;
+  flex-direction: row;
+  background: lightblue;
+}
+
+.main {
+  list-style: none;
+  width: 25%;
+}
+
+a {
+  text-decoration: none;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+.content {
+  display: none;
+  list-style-type: none;
+  padding: 0;
+}
+
+.main:hover > .content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub {
+  list-style: none;
+  padding-right: 5px;
+}
