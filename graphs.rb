@@ -7,3 +7,12 @@ class Graph
     @nodes << node
   end
 end
+
+
+class GraphNode
+  
+  def initialize(val)
+    @val = val
+    @neighbors = []
+  end
+end

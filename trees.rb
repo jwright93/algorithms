@@ -104,10 +104,6 @@ end
 # four.left = six
 # puts symmetric_tree(root)
 
-def return_deepest(root)
-  deep = get_deepest(root)
-  deep[0]
-end
 def get_deepest(node, depth = 0)
 	return [nil, depth] if node == nil
 	depth += 1
