@@ -1,0 +1,31 @@
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tic-tac-toe {
+  width: 315px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+
+.player1 {
+  background-color: red;
+}
+
+.player2 {
+  background-color: blue;
+}

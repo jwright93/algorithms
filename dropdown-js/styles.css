@@ -1,16 +1,17 @@
 .main-elements {
   display: flex;
   flex-direction: row;
-  background: lightblue;
 }
 
 .main {
   list-style: none;
   width: 25%;
+  margin: 20px;
 }
 
 a {
   text-decoration: none;
+  background: lightblue;
 }
 
 li:hover {
