@@ -32,9 +32,11 @@ class Game {
 class Board {
   constructor() {
     this.grid = this.buildGrid();
+    this.count = 0;
   }
 
   buildGrid() {
+    
     let grid = new Array(3);
 
     for (let i = 0; i < grid.length; i++) {
@@ -46,14 +48,18 @@ class Board {
   markPosition(player, row, col) {
     if (this.grid[row][col] !== undefined) return false
     this.grid[row][col] = player;
+    this.count++;
     $(`#${row}-${col}`).addClass(`${player}`)
     if (this.checkWinner(player, row, col)) {
       this.gameOver(player);
+    } else {
+      if (this.count === 9) this.gameOver('No one');
     }
     return true;
   }
 
   checkWinner(player, row, col) {
+
     // check row
     let rowWinner = true;
     let colWinner = true;
@@ -105,7 +111,8 @@ class Board {
   }
 
   gameOver(player) {
-    alert(`${player} has one the game!`)
-    this.grid = this.buildGrid()
+    alert(`${player} has one the game!`);
+    this.grid = this.buildGrid();
+    $('.tile').removeClass('player1 player2');
   }
 }

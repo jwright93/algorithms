@@ -28,8 +28,30 @@ const getElementsByClassName = (className) => {
   const traverse = (element) => {
     for (var i = 0; i < element.childNodes.length; i++) {
       const classList = element.childNodes[i].classList;
+
     }
   };
   traverse(document.body);
   return result;
 };
+
+
+
+
+const getElementsByClassName = (name) => {
+  let result = []
+
+  const traverse = (element) => {
+
+    if (element.classList && element.classList.contains(name)) {
+      result.push(element);
+    }
+
+    for (var i = 0; i < element.childNodes.length; i++) {
+      traverse(element.childNodes[i]);
+    }
+  }
+
+  traverse(document.body);
+  return result;
+}

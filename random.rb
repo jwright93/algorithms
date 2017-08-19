@@ -232,3 +232,23 @@ def license_key_formatting(s, k)
     s
 
 end
+
+
+def judge_circle(moves)
+    horizontal = 0
+    vertical = 0
+
+    moves.chars.each do |move|
+        if move == 'R'
+            horizontal += 1
+        elsif move == 'L'
+            horizontal -= 1
+        elsif move == 'U'
+            vertical += 1
+        elsif move == 'D'
+            vertical -= 1
+        end
+    end
+
+    horizontal == 0 && vertical == 0
+end
