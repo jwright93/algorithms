@@ -20,7 +20,12 @@ class LRU_Cache
   end
 
   def get(key)
-  
+    # res = @table[key]
+    # return res if res.next == nil
+    #
+    # if res.previous != nil
+    #   r
+    # end
   end
 end
 
@@ -29,7 +34,7 @@ class Node
   def initialize(value = nil)
     attr_accessor :value, :prevous, :next
     @value = value
-    @previus = nil
+    @previous = nil
     @next = nil
   end
 end

@@ -101,3 +101,34 @@ def partition(head, part)
   starting.next
 
 end
+
+
+def intersection_node(head_a, head_b)
+  a_length = length(head_a)
+  b_length = length(head_b)
+
+  if a_length > b_length
+    (a_length - b_length).times do
+      head_a = head_a.next
+    end
+  else
+    (b_length - a_length).times do
+      head_b = head_b.next
+    end
+  end
+
+  until head_a == nil
+    return head_a if head_a == head_b
+    head_a = head_a.next
+    head_b = head_b.next
+  end
+end
+
+def length(head)
+  length = 0
+  until head == nil
+    length += 1
+    head = head.next
+  end
+  length
+end
