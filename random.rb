@@ -252,3 +252,19 @@ def judge_circle(moves)
 
     horizontal == 0 && vertical == 0
 end
+
+
+def make_change(amt, coins = [1,5,10,25], cache = {0 => 0})
+  return cache[amt] if cache[amt]
+  return Float::INFINITY if amt < 0
+
+  min_so_far = Float::INFINITY
+
+  coins.each do |coin|
+    current = make_change(amt - coin, coins, cache)
+    min_so_far = current if current < min_so_far
+  end
+
+  return min_so_far if min_so_far == Float::INFINITY
+  cache[amt] = min_so_far + 1
+end
