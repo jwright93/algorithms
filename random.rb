@@ -324,9 +324,47 @@ def minimum_path_sum(grid)
       if row_idx == grid.length - 1 && col_idx != grid[0].length - 1
         result[row_idx][col_idx] = result[row_idx][col_idx + 1] + grid[row_idx][col_idx]
       end
+
+      if col_idx == grid[0].length - 1 && row_idx != grid.length - 1
+        result[row_idx][col_idx] = result[row_idx][col_idx]
+      end
       col_idx -= 1
     end
     row_idx -= 1
   end
   result[0][0]
 end
+
+
+def longest_common_subsequence(str1, str2)
+  return 0 if str1.empty? || str2.empty?
+  result = Array.new(str1.length + 1) { Array.new(str2.length + 1)}
+
+  result.length.times do |i|
+    result[i][0] = 0
+  end
+
+  result[0].length.times do |i|
+    result[0][i] = 0
+  end
+
+  i = 1
+
+  until i == result.length
+    j = 1
+    until j == result[0].length
+      if str1[i] == str2[j]
+        result[i][j] =  result[i - 1][j - 1] + 1
+      else
+        result[i][j] = [result[i][j-1], result[i-1][j-1]].max
+      end
+
+      j += 1
+    end
+    i += 1
+  end
+  result[i-1][j-1]
+end
+
+
+p longest_common_subsequence('abced', 'acefg');
