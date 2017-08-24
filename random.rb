@@ -268,3 +268,65 @@ def make_change(amt, coins = [1,5,10,25], cache = {0 => 0})
   return min_so_far if min_so_far == Float::INFINITY
   cache[amt] = min_so_far + 1
 end
+
+
+
+class Knapsack
+  def initialize(weights, values, capacity)
+    @weights = weights
+    @values = values
+    @cache = {}
+    knapsack_helper(0, capacity)
+  end
+
+  def knapsack_helper(index, capacity)
+    return -Float::INFINITY if capacity < 0
+    return 0 if index == @weights.length
+    return @cache[[index, capacity]] if @cache[[index, capacity]]
+
+    first_case = knapsack_helper(index + 1, capacity)
+    second_case = knapsack_helper(index + 1, capacity - @weights[index]) + @values[index]
+
+    if first_case > second_case
+      @cache[[index, capacity]] = first_case
+    else
+      @cache[[index, capacity]] = second_case
+    end
+  end
+end
+
+
+def generate(num_rows)
+    return [1] if num_rows == 1
+    return [1,1] if num_rows == 2
+
+    previous = generate(num_rows - 1)
+    current = []
+    i = 0
+    until i == previous.length - 1
+        current << (previous[i] + previous[i+1])
+        i += 1
+    end
+
+    [1] + current + [1]
+end
+
+
+def minimum_path_sum(grid)
+  result = Array.new(grid.length) { Array.new(grid[0].length)}
+  row_idx =  grid.length - 1
+  col_idx= grid[0].length - 1
+  result[row_idx][col_idx] = grid[row_idx][col_idx]
+
+  until row_idx == 0
+    col_idx = grid[0].length - 1
+    until col_idx == 0
+      if row_idx == grid.length - 1 && col_idx != grid[0].length - 1
+        result[row_idx][col_idx] = result[row_idx][col_idx + 1] + grid[row_idx][col_idx]
+      end
+      col_idx -= 1
+    end
+    row_idx -= 1
+  end
+  result[0][0]
+end
